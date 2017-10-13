@@ -1,12 +1,15 @@
 
 #include "Player.h"
-
+#include "Card.h"
+#include "globals.h"
+using namespace std;
 
 Player::Player(int m, int type)
 {
 	m_money = m;
 	m_type = type;
 	m_bust = false;
+	m_total = 0;
 }
 
 void Player::draw()
@@ -50,4 +53,28 @@ int Player::bust()
 Hand* Player::getHand()
 {
 	return m_hand;
+}
+
+void Player::addCard()
+{
+	Card* playercard = new Card(); 
+	m_card.push_back(playercard);
+
+	cout << "New card: " << playercard->get_spanish_rank() << " "
+		<< playercard->get_spanish_suit() << endl;
+
+	m_total += playercard->get_rank();
+
+	if (m_total > 7.5)
+		bust(); //fix
+}
+
+void Player::clearCard()
+{
+	int size = m_card.size();
+	for (int i = 0; i < size; i++)
+	{
+		delete m_card[i];
+	}
+	m_card.clear();
 }

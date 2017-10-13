@@ -4,6 +4,7 @@
 #include "globals.h"
 
 class Hand;
+class Card;
 class Player {
 public:
 	// Constructor. 
@@ -15,6 +16,7 @@ public:
 	int getMoney();
 	Hand* getHand();
 	bool getWant();
+	double getTotal();
 
 	//Mutator:
 	void lostMoney(int money); //both player and dealer
@@ -22,6 +24,9 @@ public:
 
 	//bust:
 	int bust();
+
+	void addCard();
+	void clearCard();
 
 private:
 	int m_type; //DEALER, PLAYER
@@ -32,6 +37,7 @@ private:
 	int m_lost; //lost aomunt - applies to dealer
 	int m_turn;
 	Hand* m_hand;
+	vector<Card*> m_card;
 };
 
 #endif
