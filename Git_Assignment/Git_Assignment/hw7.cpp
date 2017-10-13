@@ -52,9 +52,30 @@ int main()
 					cin >> want;
 					if (want == 'Y' || want == 'y')
 					{
+
+					}
+					else if (want == 'N' || want == 'n')
+					{
+
 					}
 
 				} //end of for loop
+
+			}
+
+			//busting outcome: (out of while loop)
+			double playertotal = player.getHand()->getTotal();
+			double dealertotal = dealer.getHand()->getTotal();
+
+			if (playertotal > 7.5 && dealertotal > 7.5) //both bust
+			{
+
+			}
+			else if (playertotal > 7.5)
+			{
+			}
+			else if (dealertotal > 7.5)
+			{
 
 			}
 		}

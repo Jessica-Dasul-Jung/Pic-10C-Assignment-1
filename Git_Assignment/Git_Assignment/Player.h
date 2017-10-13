@@ -14,10 +14,11 @@ public:
 	int getLostAmount();
 	int getMoney();
 	Hand* getHand();
+	bool getWant();
 
 	//Mutator:
 	void lostMoney(int money); //both player and dealer
-
+	void setWant(bool want);
 
 	//bust:
 	int bust();
