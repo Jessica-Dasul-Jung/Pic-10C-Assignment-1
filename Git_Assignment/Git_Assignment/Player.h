@@ -10,18 +10,25 @@ public:
 	Player(int m, int type);
 	void draw();
 
+	//Accessor:
 	int getLostAmount();
+	int getMoney();
+
+	//Mutator:
+	void lostMoney(int money); //both player and dealer
 
 
-	// You decide what functions you'll need...
+	//bust:
+	int bust();
 
 private:
-	int m_type;
-	int m_money;
-	bool m_want;
-	double m_total;
+	int m_type; //DEALER, PLAYER
+	int m_money; //remaining money - applies to player
+	bool m_want; //whether continue to pick cards
+	double m_total; //7.5
 	bool m_bust;
-	int m_lost;
+	int m_lost; //lost aomunt - applies to dealer
+	int m_turn;
 };
 
 #endif
