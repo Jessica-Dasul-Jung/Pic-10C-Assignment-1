@@ -93,5 +93,5 @@ int main()
 
 void game_log()
 {
-
+	
 }
