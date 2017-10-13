@@ -78,3 +78,8 @@ void Player::clearCard()
 	}
 	m_card.clear();
 }
+
+void Player::displayCard()
+{
+
+}

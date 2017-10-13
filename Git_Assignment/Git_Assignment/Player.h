@@ -27,7 +27,7 @@ public:
 
 	void addCard();
 	void clearCard();
-
+	void displayCard();
 private:
 	int m_type; //DEALER, PLAYER
 	int m_money; //remaining money - applies to player
