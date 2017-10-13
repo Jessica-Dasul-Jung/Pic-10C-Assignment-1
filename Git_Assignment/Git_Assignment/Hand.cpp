@@ -7,7 +7,7 @@ Hand::Hand()
 
 }
 
-void Hand::addCard(Card c)
+void Hand::addCard(Card* c)
 {
-
+	m_card.push_back(c);
 }

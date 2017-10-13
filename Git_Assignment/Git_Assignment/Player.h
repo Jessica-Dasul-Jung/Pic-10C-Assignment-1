@@ -3,16 +3,17 @@
 #define PLAYER_H
 #include "globals.h"
 
+class Hand;
 class Player {
 public:
 	// Constructor. 
-	//    Assigns initial amount of money
 	Player(int m, int type);
 	void draw();
 
 	//Accessor:
 	int getLostAmount();
 	int getMoney();
+	Hand* getHand();
 
 	//Mutator:
 	void lostMoney(int money); //both player and dealer
@@ -29,6 +30,7 @@ private:
 	bool m_bust;
 	int m_lost; //lost aomunt - applies to dealer
 	int m_turn;
+	Hand* m_hand;
 };
 
 #endif

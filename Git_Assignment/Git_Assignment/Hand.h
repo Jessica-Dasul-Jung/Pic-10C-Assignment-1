@@ -3,14 +3,14 @@
 #define HAND_H
 
 #include "globals.h"
-
+using namespace std;
 
 class Card;
 class Hand {
 public:
 	// A vector of Cards
 	Hand();
-	void addCard(Card c);
+	void addCard(Card* c); //fix??
 
 	// You decide what functions you'll need...
 

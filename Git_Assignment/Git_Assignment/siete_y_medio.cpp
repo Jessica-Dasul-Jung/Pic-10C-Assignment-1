@@ -18,9 +18,11 @@ void gameover()
 
 // Non member functions implementations (if any)
 
-
+/*
 // Stub for main
 int main() {
-	/* --STATEMENTS-- */
+	/* --STATEMENTS--
 	return 0;
 }
+
+*/

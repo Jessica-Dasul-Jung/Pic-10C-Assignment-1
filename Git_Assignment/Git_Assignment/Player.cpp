@@ -1,10 +1,7 @@
 
 #include "Player.h"
 
-/* *************************************************
-Player class
-************************************************* */
-// Implemente the member functions of the Player class here.
+
 Player::Player(int m, int type)
 {
 	m_money = m;
@@ -47,4 +44,10 @@ int Player::bust()
 {
 	if (m_bust)
 		return m_type;
+	else return 0;
+}
+
+Hand* Player::getHand()
+{
+	return m_hand;
 }
