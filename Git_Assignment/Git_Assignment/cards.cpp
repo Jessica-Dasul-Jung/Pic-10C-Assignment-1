@@ -19,6 +19,7 @@ It could give repeated cards. This is OK.
 Most variations of Blackjack are played with
 several decks of cards at the same time.
 */
+
 Card::Card() {
 	int r = 1 + rand() % 4;
 	switch (r) {
@@ -146,3 +147,15 @@ Hand class
 Player class
 ************************************************* */
 // Implemente the member functions of the Player class here.
+Player::Player(int m)
+{
+	m_money = m;
+}
+
+void Player::draw()
+{
+	while (m_want && m_total < 7.5) //while player wants card
+	{
+
+	}
+}

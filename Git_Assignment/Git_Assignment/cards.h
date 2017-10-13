@@ -1,16 +1,9 @@
-/* *************************************
-Ricardo Salazar, February 26, 2015
-
-Interface of a simple Card class
-************************************* */
-
 #include <string>
 #include <vector>
 #include <fstream>
 
 #ifndef CARDS_H
 #define CARDS_H
-
 using namespace std;
 
 enum suit_t { OROS, COPAS, ESPADAS, BASTOS };
@@ -25,6 +18,7 @@ The rank of AS is reported as    static_cast<int>(AS) + 1   = 0 + 1 =  1
 The rank of SOTA is reported as  static_cast<int>(SOTA) + 1 = 9 + 1 = 10
 */
 enum rank_t { AS, DOS, TRES, CUATRO, CINCO, SEIS, SIETE, SOTA = 9, CABALLO = 10, REY = 11 };
+
 
 class Card {
 public:
@@ -66,6 +60,7 @@ public:
 	// You decide what functions you'll need...
 
 private:
+	vector <Card> m_card;
 	// You decide what fields you'll need...
 };
 
@@ -75,12 +70,14 @@ public:
 	// Constructor. 
 	//    Assigns initial amount of money
 	Player(int m);
+	void draw();
 
 	// You decide what functions you'll need...
 
 private:
-	int money;
-	// You decide what extra fields (if any) you'll need...
+	int m_money;
+	bool m_want;
+	double m_total;
 };
 
 #endif
