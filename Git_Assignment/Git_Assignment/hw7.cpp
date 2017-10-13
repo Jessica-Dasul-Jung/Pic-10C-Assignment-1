@@ -33,9 +33,30 @@ int main()
 				break;
 			}
 			else cout << "Please enter valid bet amount" << endl;
+		}
 
 			Card* playercard = new Card(); //dynamically allocate
 			player.getHand()->addCard(playercard);
+
+			cout << "New card: " << playercard->get_spanish_rank() << " "
+				<< playercard->get_spanish_suit() << endl;
+
+			char want;
+			while (player.getHand()->getTotal() <= 7.5 && dealer.getHand()->getTotal() <= 7.5)
+			{
+				cout << "Your total: " << player.getHand()->getTotal() << endl;
+				cout << "Do you want another card?" << endl;
+
+				for (;;)
+				{
+					cin >> want;
+					if (want == 'Y' || want == 'y')
+					{
+					}
+
+				} //end of for loop
+
+			}
 		}
 
 
