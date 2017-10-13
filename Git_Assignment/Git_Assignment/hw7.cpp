@@ -11,6 +11,18 @@ void playTurn()
 
 }
 
+void playGame(int gamecount)
+{
+
+}
+
+
+void endGame()
+{
+	//clear screen
+	
+}
+
 
 int main()
 {
@@ -45,21 +57,22 @@ int main()
 			while (player.getHand()->getTotal() <= 7.5 && dealer.getHand()->getTotal() <= 7.5)
 			{
 				cout << "Your total: " << player.getHand()->getTotal() << endl;
-				cout << "Do you want another card?" << endl;
-
+				cout << "Do you want another card? (Y/N)" << endl;
 				for (;;)
 				{
 					cin >> want;
 					if (want == 'Y' || want == 'y')
 					{
-
+						player.setWant(true);
+						break;
 					}
 					else if (want == 'N' || want == 'n')
 					{
-
+						player.setWant(false);
+						break;
 					}
-
 				} //end of for loop
+
 
 			}
 
