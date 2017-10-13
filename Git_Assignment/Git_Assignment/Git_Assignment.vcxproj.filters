@@ -23,5 +23,11 @@
     <ClCompile Include="cards.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="siete_y_medio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hw7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
