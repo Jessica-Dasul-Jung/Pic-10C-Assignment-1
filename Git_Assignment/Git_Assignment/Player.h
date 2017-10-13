@@ -10,6 +10,9 @@ public:
 	Player(int m, int type);
 	void draw();
 
+	int getLostAmount();
+
+
 	// You decide what functions you'll need...
 
 private:
@@ -17,6 +20,8 @@ private:
 	int m_money;
 	bool m_want;
 	double m_total;
+	bool m_bust;
+	int m_lost;
 };
 
 #endif

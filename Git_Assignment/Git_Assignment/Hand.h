@@ -4,11 +4,13 @@
 
 #include "globals.h"
 
+
 class Card;
 class Hand {
 public:
 	// A vector of Cards
 	Hand();
+	void addCard(Card c);
 
 	// You decide what functions you'll need...
 

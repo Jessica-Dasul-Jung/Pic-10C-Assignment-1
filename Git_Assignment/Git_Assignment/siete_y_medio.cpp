@@ -6,9 +6,7 @@
 #include <cstdlib>
 using namespace std;
 
-// Global constants:
-static const int TYPE_DEALER = 100;
-static const int TYPE_PLAYER = 200;
+
 
 
 // Non member functions declarations (if any)

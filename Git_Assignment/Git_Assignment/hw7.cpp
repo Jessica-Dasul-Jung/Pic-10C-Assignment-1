@@ -1,19 +1,24 @@
 
-#include "cards.h"
+#include "Card.h"
+#include "globals.h"
+#include "Hand.h"
+#include "Player.h"
 
-void dealer_turn()
+
+
+void playTurn()
 {
 
 }
 
-void player_turn()
-{
-
-}
 
 int main()
 {
+	Player dealer(DEALER_INITIAL_MONEY, TYPE_DEALER);
+	Player player(PLAYER_INITIAL_MONEY, TYPE_PLAYER);
 
+
+	
 }
 
 

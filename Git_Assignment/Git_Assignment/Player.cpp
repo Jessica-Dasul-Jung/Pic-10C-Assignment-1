@@ -9,6 +9,7 @@ Player::Player(int m, int type)
 {
 	m_money = m;
 	m_type = type;
+	m_bust = false;
 }
 
 void Player::draw()
@@ -17,4 +18,9 @@ void Player::draw()
 	{
 
 	}
+}
+
+int Player::getLostAmount() //applies to Dealer
+{
+	return m_lost;
 }
