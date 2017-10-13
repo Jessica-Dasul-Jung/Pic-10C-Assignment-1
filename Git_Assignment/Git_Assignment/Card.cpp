@@ -1,17 +1,4 @@
-#include "cards.h"
-#include <cstdlib>
-#include <iostream>
-
-/*
-You might or might not need these two extra libraries
-#include <iomanip>
-#include <algorithm>
-*/
-
-
-/* *************************************************
-Card class
-************************************************* */
+#include "Card.h"
 
 /*
 Default constructor for the Card class.
@@ -136,26 +123,3 @@ bool Card::operator < (Card card2) const {
 
 
 
-/* *************************************************
-Hand class
-************************************************* */
-// Implemente the member functions of the Hand class here.
-
-
-
-/* *************************************************
-Player class
-************************************************* */
-// Implemente the member functions of the Player class here.
-Player::Player(int m)
-{
-	m_money = m;
-}
-
-void Player::draw()
-{
-	while (m_want && m_total < 7.5) //while player wants card
-	{
-
-	}
-}

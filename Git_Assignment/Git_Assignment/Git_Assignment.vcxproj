@@ -22,13 +22,12 @@
     <ProjectGuid>{743EFA56-E7DE-45CC-8CA4-5291204C8267}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Git_Assignment</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -146,11 +145,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="cards.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="globals.h" />
+    <ClInclude Include="Hand.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cards.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Hand.cpp" />
     <ClCompile Include="hw7.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="siete_y_medio.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

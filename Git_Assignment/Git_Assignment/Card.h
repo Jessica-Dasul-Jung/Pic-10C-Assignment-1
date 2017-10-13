@@ -1,10 +1,9 @@
-#include <string>
-#include <vector>
-#include <fstream>
+#ifndef CARD_H
+#define CARD_H
 
-#ifndef CARDS_H
-#define CARDS_H
+#include "globals.h"
 using namespace std;
+
 
 enum suit_t { OROS, COPAS, ESPADAS, BASTOS };
 
@@ -49,35 +48,6 @@ public:
 private:
 	suit_t suit;
 	rank_t rank;
-};
-
-
-class Hand {
-public:
-	// A vector of Cards
-	Hand();
-
-	// You decide what functions you'll need...
-
-private:
-	vector <Card> m_card;
-	// You decide what fields you'll need...
-};
-
-
-class Player {
-public:
-	// Constructor. 
-	//    Assigns initial amount of money
-	Player(int m);
-	void draw();
-
-	// You decide what functions you'll need...
-
-private:
-	int m_money;
-	bool m_want;
-	double m_total;
 };
 
 #endif

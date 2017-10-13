@@ -4,10 +4,11 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
-#include "cards.h"
 using namespace std;
 
-// Global constants (if any)
+// Global constants:
+static const int TYPE_DEALER = 100;
+static const int TYPE_PLAYER = 200;
 
 
 // Non member functions declarations (if any)
