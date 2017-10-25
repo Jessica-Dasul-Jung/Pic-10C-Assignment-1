@@ -12,6 +12,12 @@ Game::Game() //initialize player and dealer
 	m_dealer = new Player (PLAYER_INITIAL_MONEY, TYPE_PLAYER);
 }
 
+Game::~Game()
+{
+	delete m_player;
+	delete m_dealer;
+}
+
 void Game::askForBet()
 {
 	cout << "You have $" << m_player->getMoney() << "." << endl;
@@ -58,11 +64,30 @@ void Game::askForAnotherCard()
 }
 
 
-void Game::displayCard(Player* m)
+string Game::displayCard(Player* m)
 {
+	string display;
+	string id;
 
+	if (m->getType() == TYPE_DEALER)
+		id = "Dealer's";
+	else if (m->getType() == TYPE_PLAYER)
+		id = "Your";
+
+	display += id + " cards: " + '\n';
+	display += m->displayCard();
+
+	display += '\n' + id + " total is ";
+	display += m->getTotal() + '\n';
+
+	return display;
 }
 
+void Game::reset()
+{
+	m_player->reset();
+	m_dealer->reset();
+}
 
 void Game::determineWinner() //for busting outcome
 {
@@ -75,23 +100,27 @@ void Game::determineWinner() //for busting outcome
 	//outcome 1:
 	if ((pt < 7.5 && dt > 7.5) || (pdif < ddif)) //dealer busts or player comes closer
 	{
-		m_playerwins = true;
-		//more specs
+		cout << "Player wins!" << endl;
+		m_playerwins = true; //is this necessary?
+		m_player->winMoney(m_bet);
+		m_dealer->loseMoney(m_bet);
 	}
 	//outcome 2:
 	else if ((dt < 7.5 && pt > 7.5) || (ddif < pdif)) //player busts or dealer comes closer
 	{
+		cout << "Dealer wins!" << endl;
 		m_playerwins = false;
 		//more specs
 	}
 	//outcome 3: house advantage
 	else if (pt > 7.5 && dt > 7.5) //both bust
 	{
-
+		cout << "Dealer wins! - House Advantage" << endl;
 	}
 	//outcome 4: tie
 	else if (pt == dt && pt < 7.5 && dt < 7.5) //no bust, same total
 	{
+		cout << "Tie!" << endl;
 		//tie
 	}
 }
@@ -104,7 +133,6 @@ void Game::playGame()
 		cout << "Money left: " << m_player->getMoney();
 
 		askForBet();
-
 		//player's turn:
 		do //add card, ask for card
 		{
@@ -114,8 +142,32 @@ void Game::playGame()
 
 
 		//dealer's turn:
+		while (m_dealer->getTotal() < 7.5)
+		{
+			m_dealer->addCard();
+		}
 
 		determineWinner(); //done one round
+		cout << "----------------------------------------------------------------" << endl;
+		m_gamecount++;
+		m_player->clearCard();
+		m_dealer->clearCard();
 	}
+}
 
+void Game::game_log()
+{
+	string log;
+	log += "------------------------------------------\n";
+	log += "Game number: " + m_gamecount;
+	log += "       Money left: $" + m_player->getMoney() + '\n';
+
+	log += displayCard(m_player);
+	log += displayCard(m_dealer); //redundant
+
+	ofstream gamelog;
+
+	gamelog.open("game_log.txt");
+	gamelog << log;
+	gamelog.close();
 }

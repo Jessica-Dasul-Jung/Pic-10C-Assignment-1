@@ -17,17 +17,21 @@ public:
 	Hand* getHand();
 	bool getWant();
 	double getTotal();
+	int getType();
 
 	//Mutator:
 	void lostMoney(int money); //both player and dealer
 	void setWant(bool want);
 
+	void winMoney(int money);
+	void loseMoney(int money);
 	//bust:
 	int bust();
+	void reset();
 
 	void addCard();
 	void clearCard();
-	void displayCard();
+	string displayCard();
 private:
 	int m_type; //DEALER, PLAYER
 	int m_money; //remaining money - applies to player
@@ -36,7 +40,7 @@ private:
 	bool m_bust;
 	int m_lost; //lost aomunt - applies to dealer
 	int m_turn;
-	Hand* m_hand;
+	//Hand* m_hand;
 	vector<Card*> m_card;
 };
 

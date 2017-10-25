@@ -69,7 +69,7 @@ void Player::addCard()
 		bust(); //fix
 }
 
-void Player::clearCard()
+void Player::clearCard() 
 {
 	int size = m_card.size();
 	for (int i = 0; i < size; i++)
@@ -79,7 +79,34 @@ void Player::clearCard()
 	m_card.clear();
 }
 
-void Player::displayCard()
+string Player::displayCard()
 {
+	string display;
 
+	int size = m_card.size();
+	for (int i = 0; i < size; i++)
+	{
+		display += "    "  + m_card[i]->get_spanish_suit() << "  "
+			+ m_card[i]->get_english_suit() + '\n';
+	}
+}
+
+void Player::winMoney(int money)
+{
+	m_money += money;
+}
+
+void Player::reset()
+{
+	m_total = 0;
+}
+
+void Player::loseMoney(int money)
+{
+	m_lost += money;
+}
+
+int Player::getType()
+{
+	return m_type;
 }
