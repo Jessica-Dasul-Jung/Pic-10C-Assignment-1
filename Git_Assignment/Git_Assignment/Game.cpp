@@ -63,7 +63,6 @@ void Game::askForAnotherCard()
 	}
 }
 
-
 string Game::displayCard(Player* m)
 {
 	string display;
@@ -83,8 +82,11 @@ string Game::displayCard(Player* m)
 	return display;
 }
 
-void Game::reset()
+void Game::reset() 
 {
+	m_player->clearCard();
+	m_dealer->clearCard();
+
 	m_player->reset();
 	m_dealer->reset();
 }
@@ -140,7 +142,6 @@ void Game::playGame()
 			askForAnotherCard();
 		} while (m_player->getWant() && m_player->getTotal() < 7.5);
 
-
 		//dealer's turn:
 		while (m_dealer->getTotal() < 7.5)
 		{
@@ -150,8 +151,7 @@ void Game::playGame()
 		determineWinner(); //done one round
 		cout << "----------------------------------------------------------------" << endl;
 		m_gamecount++;
-		m_player->clearCard();
-		m_dealer->clearCard();
+		reset();
 	}
 }
 

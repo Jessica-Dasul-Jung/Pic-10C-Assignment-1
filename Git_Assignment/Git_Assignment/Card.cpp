@@ -1,6 +1,4 @@
 #include "Card.h"
-
-//do not edit this:
 /*
 Default constructor for the Card class.
 It could give repeated cards. This is OK.

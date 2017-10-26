@@ -4,31 +4,16 @@
 #include "globals.h"
 using namespace std;
 
-Player::Player(int m, int type)
+Player::Player(int m, int type) //constructor
 {
 	m_money = m;
 	m_type = type;
-	m_bust = false;
 	m_total = 0;
 }
 
-void Player::draw()
+Player::~Player() //destructor
 {
-	m_turn++;
-	while (m_want && m_total < 7.5) //while player wants card
-	{
-
-	}
-}
-
-int Player::getLostAmount() //applies to Dealer
-{
-	return m_lost;
-}
-
-int Player::getMoney() //applies to Player
-{
-	return m_money;
+	clearCard();
 }
 
 void Player::lostMoney(int money) //both player and dealer
@@ -43,18 +28,6 @@ void Player::lostMoney(int money) //both player and dealer
 	}
 }
 
-int Player::bust()
-{
-	if (m_bust)
-		return m_type;
-	else return 0;
-}
-
-Hand* Player::getHand()
-{
-	return m_hand;
-}
-
 void Player::addCard()
 {
 	Card* playercard = new Card(); 
@@ -66,7 +39,7 @@ void Player::addCard()
 	m_total += playercard->get_rank();
 
 	if (m_total > 7.5)
-		bust(); //fix
+		return; //CHECK
 }
 
 void Player::clearCard() 
@@ -86,7 +59,7 @@ string Player::displayCard()
 	int size = m_card.size();
 	for (int i = 0; i < size; i++)
 	{
-		display += "    "  + m_card[i]->get_spanish_suit() << "  "
+		display += "    "  + m_card[i]->get_spanish_suit() + "  "
 			+ m_card[i]->get_english_suit() + '\n';
 	}
 }
@@ -104,6 +77,35 @@ void Player::reset()
 void Player::loseMoney(int money)
 {
 	m_lost += money;
+}
+
+void Player::setWant(bool want)
+{
+	m_want = want;
+}
+
+
+////////////////////////////////////////////////////////////
+//ACCESSORS:	
+
+bool Player::getWant()
+{
+	return m_want;
+}
+
+double Player::getTotal()
+{
+	return m_total;
+}
+
+int Player::getLostAmount() //applies to Dealer
+{
+	return m_lost;
+}
+
+int Player::getMoney() //applies to Player
+{
+	return m_money;
 }
 
 int Player::getType()
