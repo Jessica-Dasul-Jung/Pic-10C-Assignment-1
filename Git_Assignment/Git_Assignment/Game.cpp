@@ -5,6 +5,7 @@ using namespace std;
 
 Game::Game() //initialize player and dealer
 {
+	//
 	m_gamecount = 1; //count games played
 	m_player = new Player (DEALER_INITIAL_MONEY, TYPE_PLAYER);
 	m_dealer = new Player (PLAYER_INITIAL_MONEY, TYPE_DEALER);
