@@ -1,8 +1,6 @@
 
-#include "globals.h"
 #include "Game.h"
 #include "Player.h"
-#include "Card.h"
 using namespace std;
 
 Game::Game() //initialize player and dealer
@@ -63,25 +61,6 @@ void Game::askForAnotherCard()
 	}
 }
 
-string Game::displayCard(Player* m)
-{
-	string display;
-	string id;
-
-	if (m->getType() == TYPE_DEALER)
-		id = "Dealer's";
-	else if (m->getType() == TYPE_PLAYER)
-		id = "Your";
-
-	display += id + " cards: " + '\n';
-	display += m->displayCard();
-
-	display += '\n' + id + " total is ";
-	display += m->getTotal() + '\n';
-
-	return display;
-}
-
 void Game::reset() 
 {
 	m_player->clearCard();
@@ -99,11 +78,20 @@ void Game::determineWinner() //for busting outcome
 	double pdif = 7.5 - pt;
 	double ddif = 7.5 - dt;
 
+	cout << "Your total: " << pt << endl;
+	cout << "Dealer's total: " << dt << endl;
+
+	//outcome 3: house advantage
+	if (pt > 7.5 && dt > 7.5) //both bust
+	{
+		cout << "Dealer wins! - House Advantage" << endl;
+		m_player->loseMoney(m_bet);
+		return;
+	}
 	//outcome 1:
-	if ((pt < 7.5 && dt > 7.5) || (pdif < ddif)) //dealer busts or player comes closer
+	else if ((pt < 7.5 && dt > 7.5) || (pdif < ddif)) //dealer busts or player comes closer
 	{
 		cout << "Player wins!" << endl;
-		m_playerwins = true; //is this necessary?
 		m_player->winMoney(m_bet);
 		m_dealer->loseMoney(m_bet);
 	}
@@ -111,14 +99,10 @@ void Game::determineWinner() //for busting outcome
 	else if ((dt < 7.5 && pt > 7.5) || (ddif < pdif)) //player busts or dealer comes closer
 	{
 		cout << "Dealer wins!" << endl;
-		m_playerwins = false;
+		m_player->loseMoney(m_bet);
 		//more specs
 	}
-	//outcome 3: house advantage
-	else if (pt > 7.5 && dt > 7.5) //both bust
-	{
-		cout << "Dealer wins! - House Advantage" << endl;
-	}
+
 	//outcome 4: tie
 	else if (pt == dt && pt < 7.5 && dt < 7.5) //no bust, same total
 	{
@@ -132,7 +116,8 @@ void Game::playGame()
 	while (m_player->getMoney() != 0 && m_dealer->getLostAmount() < 900) //ending condition
  	{
 		cout << "Game number: " << m_gamecount << endl;
-		cout << "Money left: " << m_player->getMoney();
+		cout << "Money left: " << m_player->getMoney() << endl;
+		cout << "Dealer lost " << m_dealer->getLostAmount() << endl;
 
 		askForBet();
 		//player's turn:
@@ -143,6 +128,7 @@ void Game::playGame()
 		} while (m_player->getWant() && m_player->getTotal() < 7.5);
 
 		//dealer's turn:
+		cout << "Dealer's turn: " << endl;
 		while (m_dealer->getTotal() < 7.5)
 		{
 			m_dealer->addCard();
@@ -153,6 +139,10 @@ void Game::playGame()
 		m_gamecount++;
 		reset();
 	}
+	if (m_dealer->getLostAmount() >= 900)
+		cout << "Dealer lost more than $900. Game ends." << endl;
+	else
+		cout << "Player has no money left" << endl;
 }
 
 void Game::game_log()
@@ -162,8 +152,8 @@ void Game::game_log()
 	log += "Game number: " + m_gamecount;
 	log += "       Money left: $" + m_player->getMoney() + '\n';
 
-	log += displayCard(m_player);
-	log += displayCard(m_dealer); //redundant
+	log += m_player->displayMyCard();
+	log += m_dealer->displayMyCard(); //redundant
 
 	ofstream gamelog;
 

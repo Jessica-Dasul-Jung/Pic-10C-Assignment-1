@@ -2,7 +2,7 @@
 #define GLOBALS_H
 
 #include <string>
-#include <vector>
+#include <vector> 
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>

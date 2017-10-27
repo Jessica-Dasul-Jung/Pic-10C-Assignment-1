@@ -3,12 +3,12 @@
 #define PLAYER_H
 #include "globals.h"
 
+using namespace std;
 class Card;
 class Player {
 public:
 	Player(int m, int type); //Constructor
 	~Player(); //Destructor
-
 
 	//Accessor:
 	int getLostAmount();
@@ -18,17 +18,20 @@ public:
 	int getType();
 
 	//Mutator:
-	void lostMoney(int money); //both player and dealer
 	void setWant(bool want);
 
+	//money:
+	void lostMoney(int money); //both player and dealer
 	void winMoney(int money);
 	void loseMoney(int money);
-	//bust:
-	void reset();
 
+	//action:
 	void addCard();
+	string displayMyCard();
+
+	//clean-up:
+	void reset();
 	void clearCard();
-	string displayCard();
 
 private:
 	int m_type; //DEALER, PLAYER

@@ -1,7 +1,6 @@
 
 #include "Player.h"
 #include "Card.h"
-#include "globals.h"
 using namespace std;
 
 Player::Player(int m, int type) //constructor
@@ -37,9 +36,6 @@ void Player::addCard()
 		<< playercard->get_spanish_suit() << endl;
 
 	m_total += playercard->get_rank();
-
-	if (m_total > 7.5)
-		return; //CHECK
 }
 
 void Player::clearCard() 
@@ -52,9 +48,21 @@ void Player::clearCard()
 	m_card.clear();
 }
 
-string Player::displayCard()
+string Player::displayMyCard()
 {
 	string display;
+	string id;
+
+	if (m_type == TYPE_DEALER)
+	{
+		id = "Dealer's";
+	}
+	else if (m_type == TYPE_PLAYER)
+	{
+		id = "Your";
+	}
+
+	display += id + " cards: " + '\n';
 
 	int size = m_card.size();
 	for (int i = 0; i < size; i++)
@@ -62,6 +70,10 @@ string Player::displayCard()
 		display += "    "  + m_card[i]->get_spanish_suit() + "  "
 			+ m_card[i]->get_english_suit() + '\n';
 	}
+
+	display += '\n' + id + " total is ";
+	display += m_total + '\n';
+	return display;
 }
 
 void Player::winMoney(int money)
@@ -76,7 +88,10 @@ void Player::reset()
 
 void Player::loseMoney(int money)
 {
-	m_lost += money;
+	if (m_type == TYPE_PLAYER)
+		m_money -= money;
+	else
+		m_lost += money;
 }
 
 void Player::setWant(bool want)
