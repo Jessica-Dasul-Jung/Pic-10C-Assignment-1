@@ -89,8 +89,8 @@ void Player::reset()
 void Player::loseMoney(int money)
 {
 	if (m_type == TYPE_PLAYER)
-		m_money -= money;
-	else
+		m_money = m_money - money;
+	else if (m_type == TYPE_DEALER)
 		m_lost += money;
 }
 
@@ -98,7 +98,6 @@ void Player::setWant(bool want)
 {
 	m_want = want;
 }
-
 
 ////////////////////////////////////////////////////////////
 //ACCESSORS:	

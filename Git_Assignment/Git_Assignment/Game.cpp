@@ -6,8 +6,8 @@ using namespace std;
 Game::Game() //initialize player and dealer
 {
 	m_gamecount = 1; //count games played
-	m_player = new Player (DEALER_INITIAL_MONEY, TYPE_DEALER);
-	m_dealer = new Player (PLAYER_INITIAL_MONEY, TYPE_PLAYER);
+	m_player = new Player (DEALER_INITIAL_MONEY, TYPE_PLAYER);
+	m_dealer = new Player (PLAYER_INITIAL_MONEY, TYPE_DEALER);
 }
 
 Game::~Game()
@@ -101,8 +101,8 @@ void Game::determineWinner() //for busting outcome
 	cout << "Your total: " << pt << endl;
 	cout << "Dealer's total: " << dt << endl;
 
-	//outcome 3: house advantage
-	if (pt > 7.5 && dt > 7.5) //both bust
+	//outcome 3: house advantage: both bust
+	if (pt > 7.5 && dt > 7.5) 
 	{
 		cout << "Dealer wins! - House Advantage" << endl;
 		m_player->loseMoney(m_bet);
@@ -114,20 +114,20 @@ void Game::determineWinner() //for busting outcome
 		cout << "Player wins!" << endl;
 		m_player->winMoney(m_bet);
 		m_dealer->loseMoney(m_bet);
+		return;
 	}
 	//outcome 2:
 	else if ((dt < 7.5 && pt > 7.5) || (ddif < pdif)) //player busts or dealer comes closer
 	{
 		cout << "Dealer wins!" << endl;
 		m_player->loseMoney(m_bet);
-		//more specs
+		return;
 	}
-
 	//outcome 4: tie
 	else if (pt == dt && pt < 7.5 && dt < 7.5) //no bust, same total
 	{
 		cout << "Tie!" << endl;
-		//tie
+		return;
 	}
 }
 
