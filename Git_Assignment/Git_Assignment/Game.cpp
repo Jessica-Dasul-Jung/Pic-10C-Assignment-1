@@ -15,24 +15,44 @@ Game::~Game()
 	delete m_player;
 	delete m_dealer;
 }
+int Game::checkValidNum(string s) //return 0 for invalid input
+{
+	//not negative and less/equal to player's money, also check for valid number
+	int size = s.size();
+	int num = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if (!isdigit(s[i]))
+			return 0;
+		int d = s[i] - '0';
+		num += pow(10, i)*d;
+	}
+	if (num > 0 && num <= m_player->getMoney())
+	{
+		return num;
+	}
+	else return 0;
+}
 
 void Game::askForBet()
 {
 	cout << "You have $" << m_player->getMoney() << "." << endl;
 	cout << "Please enter bet amount." << endl;
 
-	int bet;
 	for (;;) //infinite loop until valid input
 	{
-		cin >> bet;
-		if (bet > 0 && bet <= m_player->getMoney()) //not negative and less/equal to player's money
+		string betstr;
+		cin >> betstr;
+		cin.ignore(10000, '\n');
+		int num = checkValidNum(betstr);
+		if (num != 0)
 		{
-			cout << "Bet amount: " << bet << endl;
-			m_bet = bet;
+			m_bet = num;
 			return;
 		}
-		else cout << "Please enter valid bet amount" << endl;
+		cout << "Please enter valid bet amount" << endl;
 	}
+
 }
 
 void Game::askForAnotherCard()

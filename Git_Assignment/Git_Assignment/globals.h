@@ -9,6 +9,8 @@
 #include <algorithm>
 #include <fstream>
 #include <ctime>
+#include <cmath>
+#include <cstdio>
 
 // Global constants:
 static const int TYPE_DEALER = 100;

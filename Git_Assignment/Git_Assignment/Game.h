@@ -18,7 +18,7 @@ public:
 	void determineWinner();
 	void reset();
 	void game_log();
-
+	int checkValidNum(string s);
 private:
 	int m_gamecount;
 	Player* m_player;
