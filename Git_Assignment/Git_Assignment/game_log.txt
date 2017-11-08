@@ -1,6 +1,6 @@
 
 ------------------------------------------
-Game number: 1       Money left: $600
+Game number: 1       Money left: $870
 Your cards: 
     copas  
 
@@ -14,7 +14,7 @@ Dealer's cards:
 Dealer's total is 17.000000
 
 ------------------------------------------
-Game number: 2       Money left: $1200
+Game number: 2       Money left: $1740
 Your cards: 
     espadas  
 
@@ -27,7 +27,7 @@ Dealer's cards:
 Dealer's total is 16.000000
 
 ------------------------------------------
-Game number: 3       Money left: $2400
+Game number: 3       Money left: $3480
 Your cards: 
     copas  
 
