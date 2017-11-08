@@ -20,14 +20,22 @@ int Game::checkValidNum(string s) //return 0 for invalid input
 {
 	//not negative and less/equal to player's money, also check for valid number
 	int size = s.size();
+
 	int num = 0;
-	for (int i = 0; i < size; i++)
+	int count = 0;
+	for (int i = size - 1; i >= 0; i--)
 	{
 		if (!isdigit(s[i]))
 			return 0;
-		int d = s[i] - '0';
-		num += pow(10, i)*d;
+		
+		if (s[i] != '0')
+		{
+			int d = s[i] - '0';
+			num += pow(10, count)*d;
+		}
+		count++;
 	}
+
 	if (num > 0 && num <= m_player->getMoney())
 	{
 		return num;
@@ -46,6 +54,7 @@ void Game::askForBet()
 		cin >> betstr;
 		cin.ignore(10000, '\n');
 		int num = checkValidNum(betstr);
+		cout << num << endl;
 		if (num != 0)
 		{
 			m_bet = num;
