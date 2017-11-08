@@ -72,7 +72,7 @@ string Player::displayMyCard()
 	}
 
 	display += '\n' + id + " total is ";
-	display += m_total + '\n';
+	display += to_string (m_total) + '\n';
 	return display;
 }
 

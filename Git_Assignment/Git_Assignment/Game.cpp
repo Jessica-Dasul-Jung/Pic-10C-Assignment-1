@@ -16,18 +16,16 @@ Game::~Game()
 	delete m_player;
 	delete m_dealer;
 }
-int Game::checkValidNum(string s) //return 0 for invalid input
-{
-	//not negative and less/equal to player's money, also check for valid number
-	int size = s.size();
 
+int Game::convertString(string s)
+{
+	int size = s.size();
 	int num = 0;
 	int count = 0;
 	for (int i = size - 1; i >= 0; i--)
 	{
 		if (!isdigit(s[i]))
 			return 0;
-		
 		if (s[i] != '0')
 		{
 			int d = s[i] - '0';
@@ -35,7 +33,18 @@ int Game::checkValidNum(string s) //return 0 for invalid input
 		}
 		count++;
 	}
+	return num;
+}
 
+
+int Game::checkValidNum(string s) //return 0 for invalid input
+{
+	//not negative and less/equal to player's money, also check for valid number
+
+	int num = convertString(s);
+
+	if (num == 0)
+		return 0;
 	if (num > 0 && num <= m_player->getMoney())
 	{
 		return num;
@@ -53,8 +62,7 @@ void Game::askForBet()
 		string betstr;
 		cin >> betstr;
 		cin.ignore(10000, '\n');
-		int num = checkValidNum(betstr);
-		cout << num << endl;
+		int num = checkValidNum(betstr); //return num, 0 if invalid
 		if (num != 0)
 		{
 			m_bet = num;
@@ -166,6 +174,7 @@ void Game::playGame()
 
 		determineWinner(); //done one round
 		cout << "----------------------------------------------------------------" << endl;
+		storeLog();
 		m_gamecount++;
 		reset();
 	}
@@ -173,21 +182,31 @@ void Game::playGame()
 		cout << "Dealer lost more than $900. Game ends." << endl;
 	else
 		cout << "Player has no money left" << endl;
+	game_log(); //store in gamelog
 }
 
-void Game::game_log()
+void Game::game_log() //opens at end of game (player no money, or dealer lost $900)
 {
-	string log;
-	log += "------------------------------------------\n";
-	log += "Game number: " + m_gamecount;
-	log += "       Money left: $" + m_player->getMoney() + '\n';
-
-	log += m_player->displayMyCard();
-	log += m_dealer->displayMyCard(); //redundant
-
 	ofstream gamelog;
-
 	gamelog.open("game_log.txt");
-	gamelog << log;
+	gamelog << m_log;
 	gamelog.close();
 }
+
+void Game::storeLog()
+{
+	string log = "";
+	log += '\n';
+	log += "------------------------------------------";
+	log += '\n';
+	log += "Game number: ";
+	log += to_string(m_gamecount);
+	log += "       Money left: $";
+	log += to_string (m_player->getMoney());
+	log += '\n';
+	log += m_player->displayMyCard();
+	log += '\n';
+	log += m_dealer->displayMyCard(); //redundant
+	m_log += log;
+}
+

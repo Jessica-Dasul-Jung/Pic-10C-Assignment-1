@@ -1,0 +1,40 @@
+
+------------------------------------------
+Game number: 1       Money left: $600
+Your cards: 
+    copas  
+
+Your total is 10.000000
+
+Dealer's cards: 
+    espadas  
+    copas  
+    espadas  
+
+Dealer's total is 17.000000
+
+------------------------------------------
+Game number: 2       Money left: $1200
+Your cards: 
+    espadas  
+
+Your total is 5.000000
+
+Dealer's cards: 
+    copas  
+    copas  
+
+Dealer's total is 16.000000
+
+------------------------------------------
+Game number: 3       Money left: $2400
+Your cards: 
+    copas  
+
+Your total is 2.000000
+
+Dealer's cards: 
+    bastos  
+    bastos  
+
+Dealer's total is 10.000000

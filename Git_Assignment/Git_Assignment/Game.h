@@ -19,11 +19,14 @@ public:
 	void reset();
 	void game_log();
 	int checkValidNum(string s);
+	int convertString(string s);
+	void storeLog();
 private:
 	int m_gamecount;
 	Player* m_player;
 	Player* m_dealer;
 	int m_bet;
+	string m_log;
 };
 #endif
 
